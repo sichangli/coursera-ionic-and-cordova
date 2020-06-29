@@ -30,10 +30,7 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.dishservice.getFeaturedDish()
-      .subscribe(dish => {
-        this.dish = dish;
-        console.log('dish: ', this.dish);
-        },
+      .subscribe(dish => this.dish = dish,
         errmess => this.dishErrMess = <any>errmess );
     this.promotionservice.getFeaturedPromotion()
       .subscribe(promotion => this.promotion = promotion,
