@@ -1,14 +1,46 @@
-import { Component } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import { NavController } from 'ionic-angular';
+import {DishProvider} from '../../providers/dish/dish';
+import {PromotionProvider} from '../../providers/promotion/promotion';
+import {LeaderProvider} from '../../providers/leader/leader';
+import {Dish} from '../../shared/dish';
+import {Promotion} from '../../shared/promotion';
+import {Leader} from '../../shared/leader';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage {
+export class HomePage implements OnInit {
 
-  constructor(public navCtrl: NavController) {
+  dish: Dish;
+  promotion: Promotion;
+  leader: Leader;
+  dishErrMess: string;
+  promoErrMess: string;
+  leaderErrMess: string;
 
+  constructor(public navCtrl: NavController,
+              private dishservice: DishProvider,
+              private promotionservice: PromotionProvider,
+              private leaderservice: LeaderProvider,
+              @Inject('BaseURL') private BaseURL) {
+
+  }
+
+  ngOnInit() {
+    this.dishservice.getFeaturedDish()
+      .subscribe(dish => {
+        this.dish = dish;
+        console.log('dish: ', this.dish);
+        },
+        errmess => this.dishErrMess = <any>errmess );
+    this.promotionservice.getFeaturedPromotion()
+      .subscribe(promotion => this.promotion = promotion,
+        errmess => this.promoErrMess = <any>errmess );
+    this.leaderservice.getFeaturedLeader()
+      .subscribe(leader => this.leader = leader,
+        errmess => this.leaderErrMess = <any>errmess );
   }
 
 }
