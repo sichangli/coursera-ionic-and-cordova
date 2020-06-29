@@ -16,6 +16,7 @@ import { PromotionProvider } from '../providers/promotion/promotion';
 import { ProcessHttpmsgProvider } from '../providers/process-httpmsg/process-httpmsg';
 import {HttpClientModule} from '@angular/common/http';
 import {baseURL} from '../shared/baseurl';
+import {DishdetailPage} from '../pages/dishdetail/dishdetail';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {baseURL} from '../shared/baseurl';
     HomePage,
     AboutPage,
     MenuPage,
-    ContactPage
+    ContactPage,
+    DishdetailPage,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,8 @@ import {baseURL} from '../shared/baseurl';
     HomePage,
     AboutPage,
     MenuPage,
-    ContactPage
+    ContactPage,
+    DishdetailPage
   ],
   providers: [
     StatusBar,
