@@ -23,6 +23,7 @@ import { ReservationPage } from "../pages/reservation/reservation";
 import { CommentPage } from "../pages/comment/comment";
 import { LoginPage } from "../pages/login/login";
 import { IonicStorageModule } from "@ionic/storage";
+// import {LocalNotifications} from "@ionic-native/local-notifications";
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { IonicStorageModule } from "@ionic/storage";
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
+    // LocalNotifications,
     DishProvider,
     LeaderProvider,
     PromotionProvider,
