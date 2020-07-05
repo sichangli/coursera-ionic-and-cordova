@@ -32,7 +32,7 @@ export class LoginPage {
     private formBuilder: FormBuilder,
     private storage: Storage
   ) {
-    storage.get("user").then(user => {
+    this.storage.get("user").then(user => {
       if (user) {
         console.log(user);
         this.user = user;

@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import {DishProvider} from "../dish/dish";
-import {Observable} from "rxjs";
-import {Dish} from "../../shared/dish";
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { DishProvider } from "../dish/dish";
+import { Observable } from "rxjs";
+import { Dish } from "../../shared/dish";
+import { Storage } from "@ionic/storage";
 
 /*
   Generated class for the FavoriteProvider provider.
@@ -12,18 +13,29 @@ import {Dish} from "../../shared/dish";
 */
 @Injectable()
 export class FavoriteProvider {
-
   favorites: Array<any>;
 
-  constructor(public http: HttpClient, private dishservice: DishProvider) {
-    console.log('Hello FavoriteProvider Provider');
+  constructor(
+    public http: HttpClient,
+    private dishservice: DishProvider,
+    private storage: Storage
+  ) {
+    console.log("Hello FavoriteProvider Provider");
     this.favorites = [];
+    this.storage.get("favorites").then(favorites => {
+      console.log("fetching favorites from storage: ", favorites);
+      if (favorites) {
+        this.favorites = favorites;
+      }
+    });
   }
 
   addFavorite(id: number): boolean {
-    if (!this.isFavorite(id))
+    if (!this.isFavorite(id)) {
       this.favorites.push(id);
-    console.log('favorites', this.favorites);
+      this.storage.set("favorites", this.favorites);
+    }
+    console.log("favorites", this.favorites);
     return true;
   }
 
@@ -32,20 +44,22 @@ export class FavoriteProvider {
   }
 
   getFavorites(): Observable<Dish[]> {
-    return this.dishservice.getDishes()
-      .map(dishes => dishes.filter(dish => this.favorites.some(el => el === dish.id)));
+    return this.dishservice
+      .getDishes()
+      .map(dishes =>
+        dishes.filter(dish => this.favorites.some(el => el === dish.id))
+      );
   }
 
   deleteFavorite(id: number): Observable<Dish[]> {
     let index = this.favorites.indexOf(id);
     if (index >= 0) {
-      this.favorites.splice(index,1);
+      this.favorites.splice(index, 1);
+      this.storage.set("favorites", this.favorites);
       return this.getFavorites();
-    }
-    else {
-      console.log('Deleting non-existant favorite', id);
-      return Observable.throw('Deleting non-existant favorite' + id);
+    } else {
+      console.log("Deleting non-existant favorite", id);
+      return Observable.throw("Deleting non-existant favorite" + id);
     }
   }
-
 }
