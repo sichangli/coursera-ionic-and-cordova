@@ -29,6 +29,7 @@ import { Camera } from "@ionic-native/camera";
 import { RegisterPage } from "../pages/register/register";
 // import {LocalNotifications} from "@ionic-native/local-notifications";
 import { Network } from "@ionic-native/network";
+import { CallNumber } from "@ionic-native/call-number";
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { Network } from "@ionic-native/network";
     SocialSharing,
     Camera,
     Network,
+    CallNumber,
 
     DishProvider,
     LeaderProvider,
