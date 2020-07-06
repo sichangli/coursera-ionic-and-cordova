@@ -24,6 +24,7 @@ import { CommentPage } from "../pages/comment/comment";
 import { LoginPage } from "../pages/login/login";
 import { IonicStorageModule } from "@ionic/storage";
 import { EmailComposer } from "@ionic-native/email-composer";
+import { SocialSharing } from "@ionic-native/social-sharing";
 // import {LocalNotifications} from "@ionic-native/local-notifications";
 
 @NgModule({
@@ -64,6 +65,7 @@ import { EmailComposer } from "@ionic-native/email-composer";
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     // LocalNotifications,
     EmailComposer,
+    SocialSharing,
     DishProvider,
     LeaderProvider,
     PromotionProvider,
