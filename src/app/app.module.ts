@@ -25,6 +25,8 @@ import { LoginPage } from "../pages/login/login";
 import { IonicStorageModule } from "@ionic/storage";
 import { EmailComposer } from "@ionic-native/email-composer";
 import { SocialSharing } from "@ionic-native/social-sharing";
+import { Camera } from "@ionic-native/camera";
+import { RegisterPage } from "../pages/register/register";
 // import {LocalNotifications} from "@ionic-native/local-notifications";
 
 @NgModule({
@@ -38,7 +40,8 @@ import { SocialSharing } from "@ionic-native/social-sharing";
     FavoritesPage,
     ReservationPage,
     CommentPage,
-    LoginPage
+    LoginPage,
+    RegisterPage
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,8 @@ import { SocialSharing } from "@ionic-native/social-sharing";
     FavoritesPage,
     ReservationPage,
     CommentPage,
-    LoginPage
+    LoginPage,
+    RegisterPage
   ],
   providers: [
     StatusBar,
@@ -66,6 +70,7 @@ import { SocialSharing } from "@ionic-native/social-sharing";
     // LocalNotifications,
     EmailComposer,
     SocialSharing,
+    Camera,
     DishProvider,
     LeaderProvider,
     PromotionProvider,
