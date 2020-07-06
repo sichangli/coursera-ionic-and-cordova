@@ -28,6 +28,7 @@ import { SocialSharing } from "@ionic-native/social-sharing";
 import { Camera } from "@ionic-native/camera";
 import { RegisterPage } from "../pages/register/register";
 // import {LocalNotifications} from "@ionic-native/local-notifications";
+import { Network } from "@ionic-native/network";
 
 @NgModule({
   declarations: [
@@ -71,6 +72,8 @@ import { RegisterPage } from "../pages/register/register";
     EmailComposer,
     SocialSharing,
     Camera,
+    Network,
+
     DishProvider,
     LeaderProvider,
     PromotionProvider,
